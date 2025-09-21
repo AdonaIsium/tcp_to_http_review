@@ -24,10 +24,10 @@ func (cr *chunkReader) Read(p []byte) (n int, err error) {
 
 	n = copy(p, cr.data[cr.pos:endIndex])
 	cr.pos += n
-	// if n > cr.numBytesPerRead {
-	// 	n = cr.numBytesPerRead
-	// 	cr.pos -= n - cr.numBytesPerRead
-	// }
+	if n > cr.numBytesPerRead {
+		n = cr.numBytesPerRead
+		cr.pos -= n - cr.numBytesPerRead
+	}
 	return n, nil
 }
 
